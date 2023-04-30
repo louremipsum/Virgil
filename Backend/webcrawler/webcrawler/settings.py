@@ -12,7 +12,6 @@ BOT_NAME = "webcrawler"
 SPIDER_MODULES = ["webcrawler.spiders"]
 NEWSPIDER_MODULE = "webcrawler.spiders"
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "webcrawler (+http://www.yourdomain.com)"
 
@@ -62,9 +61,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "webcrawler.pipelines.WebcrawlerPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "webcrawler.pipelines.WebcrawlerPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
