@@ -16,6 +16,10 @@ Prerequisites:
 - [Yarn](http://yarnpkg.com/) is recommended instead of npm.
 - [Python](https://www.python.org/downloads/)
 
+## Architecture
+![Group 16 (1)](https://user-images.githubusercontent.com/72456774/236370041-80f007da-50e0-4db2-8eb9-0b643a13d7fd.png)
+
+
 For contribution,
 You would have to first Fork this repo and then clone it. You can check it here on how you can contribute to a project here [Contribution guide](https://docs.github.com/en/get-started/quickstart/contributing-to-projects).
 Fork the project, Clone it in your system, install dependencies and make a new branch where you will make the necessary changes/contribution, then push that branch etc.
