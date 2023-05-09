@@ -1,4 +1,4 @@
-# Scrapy settings for webcrawler project
+# Scrapy settings for crawling project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,19 +7,45 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "webcrawler"
+from dotenv import load_dotenv
+import os
 
-SPIDER_MODULES = ["webcrawler.spiders"]
-NEWSPIDER_MODULE = "webcrawler.spiders"
+load_dotenv()
 
+BOT_NAME = "crawling"
+
+SPIDER_MODULES = ["crawling.spiders"]
+NEWSPIDER_MODULE = "crawling.spiders"
+
+LOG_LEVEL = 'INFO'
+
+# Enables scheduling storing requests queue in redis.
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+
+# Ensure all spiders share same duplicates filter through redis.
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+
+# Redis Connection URL
+
+REDIS_START_URLS_KEY = '%(name)s:start_urls'
+
+# Don't cleanup redis queues, allows to pause/resume crawls.
+SCHEDULER_PERSIST = True
+
+# Redis Connection URL
+REDIS_URL = "redis://127.0.0.1:6379/0"
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "webcrawler (+http://www.yourdomain.com)"
+#USER_AGENT = "crawling (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# DOWNLOAD_DELAY = 2 # 1 seconds of delay
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
+
+AUTOTHROTTLE_ENABLED = True
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -44,14 +70,16 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "webcrawler.middlewares.WebcrawlerSpiderMiddleware": 543,
+#    "crawling.middlewares.CrawlingSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "webcrawler.middlewares.WebcrawlerDownloaderMiddleware": 543,
-#}
+# DOWNLOADER_MIDDLEWARES = {
+# #    "crawling.middlewares.CrawlingDownloaderMiddleware": 543,
+#    # "crawling.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 401,
+#    # "crawling.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,7 +90,8 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "webcrawler.pipelines.WebcrawlerPipeline": 300,
+   "crawling.pipelines.CrawlingPipeline": 300,
+   "crawling.pipelines.MongoDBPipeline": 500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,3 +119,5 @@ ITEM_PIPELINES = {
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+
