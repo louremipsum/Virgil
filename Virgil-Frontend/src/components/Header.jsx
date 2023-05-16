@@ -1,7 +1,7 @@
 import { Image, Button, Flex, Box, Group } from "@mantine/core";
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import { getSearchResults } from "../apis/api";
+import { getSearchResults, autoComplete } from "../apis/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
@@ -14,13 +14,25 @@ export default function Header(props) {
     if (searchString) {
       try {
         setIsLoading(true);
-        const res = await getSearchResults(encodeURIComponent(searchString));
-        setIsLoading(false);
+        const res = await getSearchResults(searchString);
+        if (!res.length) throw new Error("Search result not found");
+
         navigate(`/search?query=${encodeURIComponent(searchString)}`, {
           state: { searchResults: res },
         });
       } catch (error) {
-        console.log("error", error);
+        console.warn(error);
+        try {
+          const [top] = await autoComplete(searchString);
+          const res = await getSearchResults(top.title);
+          navigate(`/search?query=${encodeURIComponent(searchString)}`, {
+            state: { searchResults: res },
+          });
+        } catch (error) {
+          console.error("Error even after autocomplete", error);
+        }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
