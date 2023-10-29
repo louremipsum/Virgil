@@ -59,7 +59,7 @@ export default function Header(props) {
         onClick={() => navigate("/")}
       >
         <Image
-          src="/src/assets/Logo.svg"
+          src="/src/public/Logo.svg"
           alt="Virgil Logo"
           height={46}
           width={128}
