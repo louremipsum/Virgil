@@ -6,7 +6,7 @@ function WikipeadiaHeader(props) {
   return (
     <Flex direction={"row"} align={"center"} mb={"sm"}>
       <Avatar
-        src="/src/public/wikipedia.png"
+        src="/wikipedia.png"
         size={"sm"}
         alt="wikipedia"
         mr={"sm"}

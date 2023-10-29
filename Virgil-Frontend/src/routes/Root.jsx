@@ -43,7 +43,7 @@ function Root() {
         <Image
           height={273}
           width={256}
-          src="/src/public/logo_placeholder.svg"
+          src="/logo_placeholder.svg"
           alt="Virgil"
         />
         <Space h="xl" />

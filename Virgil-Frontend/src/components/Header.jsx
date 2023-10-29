@@ -58,12 +58,7 @@ export default function Header(props) {
         }}
         onClick={() => navigate("/")}
       >
-        <Image
-          src="/src/public/Logo.svg"
-          alt="Virgil Logo"
-          height={46}
-          width={128}
-        />
+        <Image src="/Logo.svg" alt="Virgil Logo" height={46} width={128} />
       </Box>
       <SearchBar
         handleSearch={handleSearch}
