@@ -10,7 +10,6 @@ function Root() {
   const navigate = useNavigate();
 
   const handleSearch = async (searchString) => {
-    console.log("search String ->", searchString);
     if (searchString) {
       try {
         setIsLoading(true);

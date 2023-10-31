@@ -2,7 +2,6 @@ import React from "react";
 import { Text, createStyles, Stack } from "@mantine/core";
 
 export default function AutoResults(props) {
-  //   console.log("hello from AutoResults ->", props.data);
   const { classes } = useStyles();
   const { arr, pop, setstring } = props;
   return (

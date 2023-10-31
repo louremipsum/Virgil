@@ -14,7 +14,7 @@ function Search() {
     if (searchResults) {
       setResult(searchResults);
     } else {
-      console.log("hallo from else");
+      console.warn("Something went wrong");
     }
   }, [location.state, searchQuery]);
 
