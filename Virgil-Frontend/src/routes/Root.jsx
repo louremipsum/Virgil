@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+/**
+ * The `Root` function is a React component that renders a search bar and a search button, and handles
+ * the search functionality.
+ * @returns The `Root` component is being returned.
+ */
+import { useState } from "react";
 import { Box, Image, Stack, Button, Space, Center } from "@mantine/core";
 import { autoComplete, getSearchResults } from "../apis/api";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +14,11 @@ function Root() {
   const [searchString, getSearchString] = useState("");
   const navigate = useNavigate();
 
+  /**
+   * The `handleSearch` function is an asynchronous function that takes a `searchString` as input and
+   * performs a search operation, displaying the search results if found, and falling back to
+   * autocomplete if no results are found.
+   */
   const handleSearch = async (searchString) => {
     if (searchString) {
       try {

@@ -1,5 +1,4 @@
 import { Flex, Text, Avatar } from "@mantine/core";
-import React from "react";
 
 function WikipeadiaHeader(props) {
   const { text } = props;

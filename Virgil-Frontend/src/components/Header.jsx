@@ -10,6 +10,11 @@ export default function Header(props) {
   const navigate = useNavigate();
   const { string } = props;
 
+  /**
+   * The function `handleSearch` is an asynchronous function that takes a `searchString` as a parameter
+   * and performs a search operation, displaying the search results if found, and falling back to
+   * autocomplete if no results are found.
+   */
   const handleSearch = async (searchString) => {
     if (searchString) {
       try {

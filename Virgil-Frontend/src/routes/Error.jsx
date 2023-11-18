@@ -1,3 +1,8 @@
+/**
+ * The above code is a React component that renders a custom error page with a title, description, and
+ * a button to navigate back to the home page.
+ * @returns The `NotFoundTitle` component is being returned.
+ */
 import {
   createStyles,
   Title,

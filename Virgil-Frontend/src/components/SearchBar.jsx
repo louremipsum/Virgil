@@ -10,11 +10,17 @@ function SearchBar(props) {
   const { getSearchString, handleSearch, fromSearch, String } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [searchString, setSearchString] = useState(fromSearch ? String : "");
+
+  /*using the `useDebouncedValue` hook to create a debounced version of the `searchString` state variable. */
   const [debouncedSearchString] = useDebouncedValue(searchString, 300);
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
   const [fetching, setFetching] = React.useState(false);
   const [showingPopover, setShowingPopover] = useState(false);
 
+  /**
+   * The above function is a useEffect hook that fetches autocomplete results based on a debounced search string state
+   * and updates the AutoComplete Results array accordingly.
+   */
   useEffect(() => {
     const fetchResults = async () => {
       getSearchString(searchString);
